@@ -5,10 +5,37 @@
 
 ---
 
+## 🛡️ Engineering Standards: Surgical Debugging & Strategy
+
+이 MCP 서버를 사용하는 모든 AI 에이전트는 아래의 **5단계 엔지니어링 표준**을 엄격히 준수해야 합니다. 이는 최소한의 토큰으로 최대한의 정밀도를 확보하기 위함입니다.
+
+1. **현상 파악 (Observe Symptoms First)**
+   - 코드를 수정하기 전, `jarvis_status`나 로그 파일 등을 통해 실제 증거(Raw Evidence)를 수집합니다.
+   - 가설만으로 코딩하지 않으며, 반드시 실제 상태를 확인한 후 작업을 시작합니다.
+
+2. **원인 역추적 (Root Cause Tracing)**
+   - 증상에서부터 `fs_search_in_file` 등을 활용해 코드를 거슬러 올라가 근본 원인을 찾습니다.
+   - `Input → Processing → Output`의 흐름 중 에러가 발생하는 가장 앞단의 지점을 식별합니다.
+
+3. **의존관계 정렬 (Dependency Ordering)**
+   - 여러 이슈가 있을 경우, 의존성 순서로 정렬합니다. 
+   - "A를 고치지 않으면 B를 테스트할 수 있는가?"를 질문하여 선행 작업을 결정합니다.
+
+4. **정밀한 수정 (Surgical Precision)**
+   - `fs_read_file`로 필요한 섹션만 읽고, 모호함 없이 정확한 파일 경로와 코드 블록을 수정합니다.
+   - 수정한 후에는 반드시 검증 과정을 거칩니다.
+
+5. **목적 중심 설계 (Purpose-Centric Design)**
+   - 모든 기능은 사용자의 "실제 문제 해결"에 얼마나 기여하는가를 기준으로 설계합니다.
+   - 불필요한 전체 로드보다, 핵심 로직의 정밀한 조작을 우선시합니다.
+
+---
+
 ## 📋 변경 이력
 
 | 날짜 | 구분 | 내용 |
 |------|------|------|
+| 2026-04-29 | 🛡️ DOCS | "Engineering Standards: Surgical Debugging & Strategy" 수칙 추가 |
 | 2026-04-01 | 🆕 NEW | `changelog_add` / `changelog_view` 도구 추가 — README 변경이력 자동 기록 |
 | 2026-04-01 | 🆕 NEW | `reversal_*` 도구 5개 추가 (Reversal 격겜 프로젝트 전용) |
 | 2026-04-01 | 🔧 FIX | `jarvis_status` Windows 호환 수정 (`ps aux` → `wmic`) |
