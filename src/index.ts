@@ -4,6 +4,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { createServer, IncomingMessage, ServerResponse } from "http";
 import { registerFileTools } from "./tools/file-tools.js";
 import { registerJarvisTools } from "./tools/jarvis-tools.js";
+import { registerJarvisLectureTools } from "./tools/jarvis-lecture-tools.js";
 import { registerLabDataTools } from "./tools/lab-data-tools.js";
 import { registerReversalTools } from "./tools/reversal-tools.js";
 import { registerMetaTools } from "./tools/meta-tools.js";
@@ -16,6 +17,7 @@ function createMcpServer(): McpServer {
   });
   registerFileTools(server);
   registerJarvisTools(server);
+  registerJarvisLectureTools(server);
   registerLabDataTools(server);
   registerReversalTools(server);
   registerMetaTools(server);
